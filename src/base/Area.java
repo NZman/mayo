@@ -51,6 +51,7 @@ public class Area {
 
 	public void removeSeat(int key) {
 		seatMap.remove(key);
+		seats -= 1;
 	}
 	
 	public Integer getWidth() {
