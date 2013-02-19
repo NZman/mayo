@@ -26,8 +26,8 @@ public class Organization {
 		if(areaExists(AreaKey)) {
 			Area area = areaHash.get(AreaKey);
 			Person person = personHash.get(personKey);
-			SeatStructure ss = area.findEmptyStruct();
-			ss.seatPerson(person);
+			Seat s = area.findEmptySeat();
+			s.setOccupant(person);
 		}
 	}
 	

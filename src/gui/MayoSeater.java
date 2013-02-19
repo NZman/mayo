@@ -65,7 +65,7 @@ public class MayoSeater extends JPanel {
 	}
 	
 	public void viewArea(int areaKey) {
-		add(new SeatCanvas(organization.getArea(areaKey)));
+		add(new AreaCanvas(organization.getArea(areaKey)));
 	}
 
 	private static void createAndShowGUI() {
