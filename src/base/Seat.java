@@ -53,4 +53,9 @@ public class Seat implements Structure {
 	public boolean isOccupied() {
 		return occupant != null;
 	}
+	public String toString() {
+		String occString = "";
+		if(isOccupied()) {occString = "{"+occupant+"}";}
+		return "("+x+","+y+")["+angle+"o]" + occString;
+	}
 }

@@ -21,4 +21,5 @@ public interface OrgLoader {
 	public Area popArea();
 	public boolean personStackEmpty();
 	public boolean areaStackEmpty();
+	public String getName();
 }

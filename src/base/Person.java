@@ -1,15 +1,9 @@
 package base;
 
 public class Person {
-	int key;
 	String name;
-	public Person(int key, String name) {
-		this.key = key;
+	public Person(String name) {
 		this.name = name;
-	}
-	
-	public Integer getKey() {
-		return key;
 	}
 	
 	public String getName() {
@@ -17,6 +11,6 @@ public class Person {
 	}
 	
 	public String toString() {
-		return key + ": " + name;
+		return name;
 	}
 }

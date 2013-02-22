@@ -3,6 +3,7 @@ package test;
 import base.Area;
 import base.OrgLoader;
 import base.Person;
+import base.Seat;
 import java.util.Stack;
 
 public class TestLoader implements OrgLoader {
@@ -12,11 +13,16 @@ public class TestLoader implements OrgLoader {
 	public TestLoader() {
 		personStack = new Stack<Person>();
 		areaStack = new Stack<Area>();
-		personStack.push(new Person(1,"Samantha Green"));
-		personStack.push(new Person(2,"Arnold Palmer"));
-		personStack.push(new Person(3,"Paul Vorne"));
-		areaStack.push(new Area(1,"Floor One", 100, 300));
-		areaStack.push(new Area(2,"Floor Two", 200, 700));
+		personStack.push(new Person("Samantha Green"));
+		personStack.push(new Person("Arnold Palmer"));
+		personStack.push(new Person("Paul Vorne"));
+		Area area = new Area("Floor One", 100, 300);
+		area.addSeat(12, 31);
+		area.addSeat(33, 25);
+		areaStack.push(area);
+		area = new Area("Floor Two",200,700);
+		area.addSeat(50,75);
+		areaStack.push(area);
 	}
 	
 	@Override
@@ -38,5 +44,7 @@ public class TestLoader implements OrgLoader {
 	public boolean areaStackEmpty() {
 		return areaStack.empty();
 	}
-
+	public String getName() {
+		return "Test Inc.";
+	}
 }
