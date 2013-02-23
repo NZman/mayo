@@ -10,8 +10,8 @@ import test.TestLoader;
 * are made up of a set of areas and a set of people.
 */
 public class Organization {
-	private HashMap<Integer,Area> areaHash;
-	private HashMap<Integer,Person> personHash;
+	private HashMap<String,Area> areaHash;
+	private HashMap<String,Person> personHash;
 	private int person_count;
 	private int area_count;	
 	private String name;
@@ -20,8 +20,8 @@ public class Organization {
 	* Initializes a new empty Organization.
 	*/
 	public Organization(String name) {
-		areaHash = new HashMap<Integer,Area>();
-		personHash = new HashMap<Integer,Person>();
+		areaHash = new HashMap<String,Area>();
+		personHash = new HashMap<String,Person>();
 		person_count = 0;
 		area_count = 0;
 		this.name = name;
@@ -45,10 +45,11 @@ public class Organization {
 	*  Places a person into an area based on a person key and an area key. This
 	*  method can't be used to specify a specific chair in the selected Area.
 	*/
-	public void seatPerson(int personKey, int AreaKey) {
-		if(areaExists(AreaKey)) {
-			Area area = areaHash.get(AreaKey);
-			Person person = personHash.get(personKey);
+
+	public void seatPerson(String user_name, String area_name) {
+		if(areaExists(area_name)) {
+			Area area = areaHash.get(area_name);
+			Person person = personHash.get(user_name);
 			Seat s = area.findEmptySeat();
 			s.setOccupant(person);
 		}
@@ -62,8 +63,10 @@ public class Organization {
 	}
 
 	public void addPerson(Person person) {
-		personHash.put(person_count, person);
-		person_count++;
+		if(!personHash.containsKey(person.getName())) {
+			personHash.put(person.getName(), person);
+			person_count++;
+		}
 	}
 
 	public void setName(String name) {
@@ -73,10 +76,10 @@ public class Organization {
 	/**
 	*	
 	*/
-	public Area getArea(Integer areaKey) {
+	public Area getArea(String area_name) {
 		Area result = null;
-		if(areaHash.containsKey(areaKey)) {
-			result = areaHash.get(areaKey);
+		if(areaHash.containsKey(area_name)) {
+			result = areaHash.get(area_name);
 		}
 		return result;
 	}
@@ -90,27 +93,27 @@ public class Organization {
 	}
 	
 	public void addArea(Area area) {
-		areaHash.put(area_count, area);
+		areaHash.put(area.getName(), area);
 		area_count++;
 	}
 	
-	public boolean areaExists(int AreaKey) {
-		return areaHash.containsKey(AreaKey);
+	public boolean areaExists(String area_name) {
+		return areaHash.containsKey(area_name);
 	}
 
-	public Area removeArea(Integer key) {
+	public Area removeArea(String area_name) {
 		Area result = null;
-		if (areaHash.containsKey(key)) {
-			result = areaHash.remove(key);
+		if (areaHash.containsKey(area_name)) {
+			result = areaHash.remove(area_name);
 			area_count--;
 		}
 		return result;
 	}
 
-	public Person removePerson(Integer key) {
+	public Person removePerson(String user_name) {
 		Person result = null;
-		if (personHash.containsKey(key)) {
-			result = personHash.remove(key);
+		if (personHash.containsKey(user_name)) {
+			result = personHash.remove(user_name);
 			person_count--;
 		}
 		return result;

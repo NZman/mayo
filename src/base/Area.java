@@ -90,6 +90,10 @@ public class Area {
 		return height;
 	}
 
+
+	public String getName() {
+		return name;
+	}
 	/**
 	*  Returns the string representation of this object.  Meaning the key and
 	*  name.

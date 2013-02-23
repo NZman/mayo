@@ -9,8 +9,6 @@ import javax.swing.JList;
 import javax.swing.DefaultListModel;
 import javax.swing.SwingUtilities;
 import javax.swing.BoxLayout;
-import javax.swing.JInternalFrame;
-import javax.swing.JDesktopPane;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -23,7 +21,7 @@ import base.Area;
 
 import test.TestLoader;
 
-public class MayoSeater extends JDesktopPane {
+public class MayoSeater extends JPanel {
 	static final int PREFERRED_APP_WIDTH = 800;
 	static final int PREFERRED_APP_HEIGHT = 600;
 	
@@ -37,25 +35,25 @@ public class MayoSeater extends JDesktopPane {
 		
 		//setLayout(new BoxLayout(this, BoxLayout.X_AXIS));		
 		personModel = new DefaultListModel<Person>();
-		JInternalFrame personFrame = new JInternalFrame();
+		JPanel personPanel = new JPanel();
 		JList<Person> personList = new JList<Person>(personModel);
-		personFrame.add(personList);
-		add(personFrame);
-		personFrame.setPreferredSize(new Dimension(300,300));
+		personPanel.add(personList);
+		add(personPanel);
+		personPanel.setPreferredSize(new Dimension(300,300));
 
 		areaModel = new DefaultListModel<Area>();
-		JInternalFrame areaFrame = new JInternalFrame();
-		//areaFrame.setLayout(new BoxLayout(areaList,BoxLayout.Y_AXIS));
-		areaFrame.add(new JList<Area>(areaModel));		
+		JPanel areaPanel = new JPanel();
+		areaPanel.setLayout(new BoxLayout(areaPanel,BoxLayout.Y_AXIS));
+		areaPanel.add(new JList<Area>(areaModel));		
 		JButton button = new JButton("View Area");
 		button.setMaximumSize(new Dimension(200,50));
-		areaFrame.add(button);
-		//areaFrame.setBorder(BorderFactory.createEtchedBorder());
-		add(areaFrame);//, BorderLayout.EAST);
-		areaFrame.setPreferredSize(new Dimension(300,300));
+		areaPanel.add(button);
+		areaPanel.setBorder(BorderFactory.createEtchedBorder());
+		add(areaPanel);//, BorderLayout.EAST);
+		areaPanel.setPreferredSize(new Dimension(300,300));
 		
-		areaFrame.setVisible(true);
-		personFrame.setVisible(true);
+		areaPanel.setVisible(true);
+		personPanel.setVisible(true);
 		
 		setPreferredSize(new Dimension(PREFERRED_APP_WIDTH,PREFERRED_APP_HEIGHT));
 	}
@@ -72,7 +70,7 @@ public class MayoSeater extends JDesktopPane {
 		}
 	}
 	
-	public void viewArea(int areaKey) {
+	public void viewArea(String areaKey) {
 		add(new AreaCanvas(organization.getArea(areaKey)));
 	}
 
