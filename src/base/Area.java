@@ -99,10 +99,11 @@ public class Area {
 	*  name.
 	*/
 	public String toString() {
-		String result = name + "["+width+"x"+height+"]";
-		for(Seat s : seatMap.values()) {
-			result +="\n"+ s;
-		}
-		return result;
+		return name;
+//		String result = name + "["+width+"x"+height+"]";
+//		for(Seat s : seatMap.values()) {
+//			result +="\n"+ s;
+//		}
+//		return result;
 	}
 }
