@@ -3,14 +3,13 @@ import java.util.HashMap;
 import java.util.Collection;
 
 /**
-* The Area class represents the floorplan of a single location, such as a
+* The Area class represents the floor plan of a single location, such as a
 * single floor of an office complex or an auditorium.  Areas are currently
 * defined as rectangular areas with a set of seats located within it.
 *
 */
 public class Area {
 	private static final int DEFAULT_DIMENSION = 300;
-	private static final int SEAT_LIMIT = 1000;
 	
 	private int seats;
 

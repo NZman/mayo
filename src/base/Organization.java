@@ -12,8 +12,6 @@ import test.TestLoader;
 public class Organization {
 	private HashMap<String,Area> areaHash;
 	private HashMap<String,Person> personHash;
-	private int person_count;
-	private int area_count;	
 	private String name;
 
 	/**
@@ -22,8 +20,6 @@ public class Organization {
 	public Organization(String name) {
 		areaHash = new HashMap<String,Area>();
 		personHash = new HashMap<String,Person>();
-		person_count = 0;
-		area_count = 0;
 		this.name = name;
 	}
 	
@@ -65,7 +61,6 @@ public class Organization {
 	public void addPerson(Person person) {
 		if(!personHash.containsKey(person.getName())) {
 			personHash.put(person.getName(), person);
-			person_count++;
 		}
 	}
 
@@ -94,7 +89,6 @@ public class Organization {
 	
 	public void addArea(Area area) {
 		areaHash.put(area.getName(), area);
-		area_count++;
 	}
 	
 	public boolean areaExists(String area_name) {
@@ -105,7 +99,6 @@ public class Organization {
 		Area result = null;
 		if (areaHash.containsKey(area_name)) {
 			result = areaHash.remove(area_name);
-			area_count--;
 		}
 		return result;
 	}
@@ -114,9 +107,12 @@ public class Organization {
 		Person result = null;
 		if (personHash.containsKey(user_name)) {
 			result = personHash.remove(user_name);
-			person_count--;
 		}
 		return result;
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 	public String toString() {

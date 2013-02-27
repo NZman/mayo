@@ -3,7 +3,6 @@ package test;
 import base.Area;
 import base.OrgLoader;
 import base.Person;
-import base.Seat;
 import java.util.Stack;
 
 public class TestLoader implements OrgLoader {

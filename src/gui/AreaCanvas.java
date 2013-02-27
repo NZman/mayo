@@ -10,6 +10,10 @@ import javax.swing.JComponent;
 import base.Area;
 
 public class AreaCanvas extends JComponent{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 922810491494467633L;
 	Area area;
 	
 	public AreaCanvas(Area area) {
