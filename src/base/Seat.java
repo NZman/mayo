@@ -13,6 +13,8 @@ public class Seat implements Structure {
 	public Seat(int x, int y) {
 		this(x,y,null);
 	}
+	
+	public Seat(){}
 
 	public void setX(int x) {
 		this.x = x;

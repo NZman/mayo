@@ -260,7 +260,11 @@ public class MayoSeater extends JPanel {
       public void run() {
 	
 
-      //  createAndShowGUI();
+      createAndShowGUI();
+      
+      
+      
+      
         
         XMLOrgLoader xload = new XMLOrgLoader();
         
