@@ -59,8 +59,8 @@ public class Organization {
 	}
 
 	public void addPerson(Person person) {
-		if(!personHash.containsKey(person.getName())) {
-			personHash.put(person.getName(), person);
+		if(!personHash.containsKey(person.getUserName())) {
+			personHash.put(person.getUserName(), person);
 		}
 	}
 

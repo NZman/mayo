@@ -16,11 +16,11 @@ public class TestLoader implements OrgLoader {
 		personStack.push(new Person("Arnold Palmer"));
 		personStack.push(new Person("Paul Vorne"));
 		Area area = new Area("Floor One", 100, 300);
-		area.addSeat(12, 31);
-		area.addSeat(33, 25);
+		area.addSeat("101",12, 31);
+		area.addSeat("102",33, 25);
 		areaStack.push(area);
 		area = new Area("Floor Two",200,700);
-		area.addSeat(50,75);
+		area.addSeat("201",50,75);
 		areaStack.push(area);
 	}
 	
