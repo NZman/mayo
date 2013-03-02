@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import base.Organization;
 import base.Person;
 import base.Area;
+import base.XMLOrgLoader;
 
 import test.TestLoader;
 
@@ -257,7 +258,25 @@ public class MayoSeater extends JPanel {
     //No idea what this does
     SwingUtilities.invokeLater(new Runnable() {
       public void run() {
-        createAndShowGUI();
+	
+
+      //  createAndShowGUI();
+        
+        XMLOrgLoader xload = new XMLOrgLoader();
+        
+        xload.clear();	// this clears out binding
+		xload.test();	// this creates a test sample "test2.xml"
+		
+		
+        xload.read("test2.xml");
+	
+		if (xload.personStackEmpty() != true)
+		{
+			System.out.println("Popping a person");
+			System.out.println(xload.popPerson().getName());
+		}
+		
+		                
       }
     });
   }

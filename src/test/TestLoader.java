@@ -46,4 +46,9 @@ public class TestLoader implements OrgLoader {
 	public String getName() {
 		return "Test Inc.";
 	}
+	
+	// For backwards compatibility
+	public void pushPerson(Person person){};
+	public void pushArea(Area area){};
+	public void pushName(String name){};
 }

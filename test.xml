@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Organization>
+    <name>LB's Name</name>
+        <area>
+            <seats>0</seats>
+            <name>Name</name>
+            <width>10</width>
+            <height>30</height>
+            <seatMap/>
+        </area>
+        <area>
+            <seats>0</seats>
+            <name>Try 2 Area</name>
+            <width>30</width>
+            <height>500</height>
+            <seatMap/>
+        </area>
+        <person>
+            <name>Person's Name</name>
+        </person>
+        <name>try</name>
+        <person>
+            <name>Person 2</name>
+        </person>
+        <name>try 2</name>
+</Organization>

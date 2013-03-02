@@ -2,6 +2,8 @@ package base;
 
 import java.util.HashMap;
 import java.util.Collection;
+import javax.xml.bind.annotation.*;
+
 
 /**
 * The Area class represents the floor plan of a single location, such as a
@@ -9,6 +11,7 @@ import java.util.Collection;
 * defined as rectangular areas with a set of seats located within it.
 *
 */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Area {
   /**
    * The default size of an area.
@@ -33,7 +36,11 @@ public class Area {
   public Area(final String aName) {
     this(aName, DEFAULT_DIMENSION, DEFAULT_DIMENSION);
   }
-
+  /**
+  *	 Initializes an Area with a blank slate.
+  *  This is necessary for JAXB unmarshalling xml files into clean versions.
+  */
+  public Area() {}
   /**
   *  Initializes an Area with the specified key, name, and dimensions.
   *  @param aName The name for the created Area

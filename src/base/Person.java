@@ -1,7 +1,10 @@
 package base;
+import javax.xml.bind.annotation.*;
 
 public class Person {
-	final String username;
+	@XmlElement
+	String username;
+	@XmlElement
 	String name;
 	
 	public Person(String name) {
@@ -13,6 +16,9 @@ public class Person {
 		this.username = username;
 		this.name = name;
 	}
+	
+	public Person() {}		// JAXB needs a default blank constructor
+	
 	
 	public String getName() {
 		return name;

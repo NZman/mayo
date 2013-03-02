@@ -127,9 +127,9 @@ public class Organization {
 		}
 		return result;
 	}
-
+/*
 	public static void main (String args[]) {
 		Organization org = new Organization(new TestLoader());
 		System.out.print(org);
-	}	
+	}	*/
 }

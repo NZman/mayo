@@ -11,15 +11,18 @@ package base;
  *
  */
 public interface OrgLoader {
-	/**
-	 * 
-	 * 
-	 * Returns the next read Person instance.
-	 * @return
-	 */
+
 	public Person popPerson();
 	public Area popArea();
 	public boolean personStackEmpty();
 	public boolean areaStackEmpty();
 	public String getName();
+	
+	 
+	public void pushPerson(Person person);
+	public void pushArea(Area area);
+	public void pushName(String name);
+	
+	 
+	
 }

@@ -4,6 +4,9 @@ src/base/OrgLoader.java
 src/base/Person.java
 src/base/Seat.java
 src/base/Structure.java
+src/base/Binding.java
+src/base/XMLOrgLoader.java
 src/gui/MayoSeater.java
 src/gui/AreaCanvas.java
 src/test/TestLoader.java
+
