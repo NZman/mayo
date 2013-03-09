@@ -14,7 +14,7 @@ public class TestLoader implements OrgLoader {
 		areaStack = new Stack<Area>();
 		personStack.push(new Person("Samantha Green"));
 		personStack.push(new Person("Arnold Palmer"));
-		personStack.push(new Person("Paul Vorne"));
+		personStack.push(new Person("Paul Vorne", "pman"));
 		Area area = new Area("Floor One", 100, 300);
 		area.addSeat("101",12, 31);
 		area.addSeat("102",33, 25);

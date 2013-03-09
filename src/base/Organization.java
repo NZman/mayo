@@ -3,133 +3,173 @@ package base;
 import java.util.HashMap;
 import java.util.Collection;
 
-import test.TestLoader;
-
 /**
-* Organizations are the top level component of the SeatApp.  Organizations
-* are made up of a set of areas and a set of people.
-*/
+ * Organizations are the top level component of the SeatApp.  Organizations
+ * are made up of a set of areas and a set of people.
+ */
 public class Organization {
-	private HashMap<String,Area> areaHash;
-	private HashMap<String,Person> personHash;
-	private String name;
+  /** A hashMap containing all of the Areas in the Organization. */
+  private HashMap<String, Area> areaHash;
+  /** A hashMap containing all of the Persons in the Organization. */
+  private HashMap<String, Person> personHash;
+  /** The name of this Organization. */
+  private String name;
 
-	/**
-	* Initializes a new empty Organization.
-	*/
-	public Organization(String name) {
-		areaHash = new HashMap<String,Area>();
-		personHash = new HashMap<String,Person>();
-		this.name = name;
-	}
-	
-	/**
-	* Uses an {@link OrgLoader} to create an Organization with predefined Areas
-	* and People.
-	*/
-	public Organization(OrgLoader ol) {
-		this(ol.getName());
-		while(!ol.areaStackEmpty()) {
-			addArea(ol.popArea());
-		}
-		while(!ol.personStackEmpty()) {
-			addPerson(ol.popPerson());
-		}
-	}
-	
-	/**
-	*  Places a person into an area based on a person key and an area key. This
-	*  method can't be used to specify a specific chair in the selected Area.
-	*/
+  /**
+   * Initializes a new empty Organization.
+   * @param oName The name of the Organization.
+   */
+  public Organization(final String oName) {
+    areaHash = new HashMap<String, Area>();
+    personHash = new HashMap<String, Person>();
+    this.name = oName;
+  }
 
-	public void seatPerson(String user_name, String area_name) {
-		if(areaExists(area_name)) {
-			Area area = areaHash.get(area_name);
-			Person person = personHash.get(user_name);
-			Seat s = area.findEmptySeat();
-			s.setOccupant(person);
-		}
-	}
-	
-	/**
-	*	Adds a person to the Organization.
-	*/
-	public void addPerson(String name) {
-		addPerson(new Person(name));
-	}
+  /**
+   * Uses an {@link OrgLoader} to create an Organization with predefined
+   * Areas and People.
+   * @param ol the OrgLoader which will build the Organization.
+   */
+  public Organization(final OrgLoader ol) {
+    this(ol.getName());
+    while (!ol.areaStackEmpty()) {
+      addArea(ol.popArea());
+    }
+    while (!ol.personStackEmpty()) {
+      addPerson(ol.popPerson());
+    }
+  }
 
-	public void addPerson(Person person) {
-		if(!personHash.containsKey(person.getUserName())) {
-			personHash.put(person.getUserName(), person);
-		}
-	}
+  /**
+   * Places a person into an area based on a person key and an area key.
+   * This method can't be used to specify a specific chair in the
+   * selected Area.
+   * @param userName The identifier of the person
+   * @param areaName The identifier of the seat
+   */
+  public final void seatPerson(final String userName, final String areaName) {
+    if (areaExists(areaName)) {
+      Area area = areaHash.get(areaName);
+      Person person = personHash.get(userName);
+      Seat s = area.findEmptySeat();
+      s.setOccupant(person);
+    }
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	/**
-	*	
-	*/
-	public Area getArea(String area_name) {
-		Area result = null;
-		if(areaHash.containsKey(area_name)) {
-			result = areaHash.get(area_name);
-		}
-		return result;
-	}
-	
-	public Collection<Person> getPeople() {
-		return personHash.values();
-	}
-	
-	public Collection<Area> getAreas() {
-		return areaHash.values();
-	}
-	
-	public void addArea(Area area) {
-		areaHash.put(area.getName(), area);
-	}
-	
-	public boolean areaExists(String area_name) {
-		return areaHash.containsKey(area_name);
-	}
+  /**
+   *Adds a person to the Organization.
+   * @param pName The identifier of the person.
+   */
+  public final void addPerson(final String pName) {
+    addPerson(new Person(pName));
+  }
 
-	public Area removeArea(String area_name) {
-		Area result = null;
-		if (areaHash.containsKey(area_name)) {
-			result = areaHash.remove(area_name);
-		}
-		return result;
-	}
+  /**
+   * Adds a person to the Organization.
+   * @param person The Person to add.
+   */
+  public final void addPerson(final Person person) {
+    if (!personHash.containsKey(person.getUserName())) {
+      personHash.put(person.getUserName(), person);
+    }
+  }
 
-	public Person removePerson(String user_name) {
-		Person result = null;
-		if (personHash.containsKey(user_name)) {
-			result = personHash.remove(user_name);
-		}
-		return result;
-	}
-	
-	public String getName() {
-		return name;
-	}
+  /**
+   * Sets the name of the Organization.
+   * @param oName The new name of the Organization.
+   */
+  public final void setName(final String oName) {
+    this.name = oName;
+  }
 
-	public String toString() {
-		String result = "";
-		result = name+"\n\nPeople:\n";
-		for (Person p : personHash.values()) {
-			result += p+"\n";
-		}
-		result += "\nAreas:\n";
-		for (Area a : areaHash.values()) {
-			result += a+"\n";
-		}
-		return result;
-	}
+  /**
+   * Returns the area matching the specified identifier.
+   * @param areaName the name of the Area.
+   * @return The Area.
+   */
+  public final Area getArea(final String areaName) {
+    Area result = null;
+    if (areaHash.containsKey(areaName)) {
+      result = areaHash.get(areaName);
+    }
+    return result;
+  }
 
-	public static void main (String args[]) {
-		Organization org = new Organization(new TestLoader());
-		System.out.print(org);
-	}	
+  /**
+   * Returns the complete list of Persons as a Collection.
+   * @return A Collection containing the Persons of this Organization.
+   */
+  public final Collection<Person> getPeople() {
+    return personHash.values();
+  }
+
+  /**
+   * Returns the complete list of Areas as a Collection.
+   * @return A Collection containing the Areas of this Organization.
+   */
+  public final Collection<Area> getAreas() {
+    return areaHash.values();
+  }
+
+  /**
+   * Adds an Area to the Organization.
+   * @param area The Area to add to the Organization.
+   */
+  public final void addArea(final Area area) {
+    areaHash.put(area.getName(), area);
+  }
+
+  /**
+   * Returns true if the specified Area exists within the Organization.
+   * @param areaName The name of the Area
+   * @return True if the Area exists. False otherwise.
+   */
+  public final boolean areaExists(final String areaName) {
+    return areaHash.containsKey(areaName);
+  }
+
+  /**
+   * Removes the specified Area.
+   * @param areaName the identifier of the Area to be removed.
+   * @return The removed Area. Null if the Area didn't exist.
+   */
+  public final Area removeArea(final String areaName) {
+    Area result = null;
+    if (areaHash.containsKey(areaName)) {
+      result = areaHash.remove(areaName);
+    }
+    return result;
+  }
+
+  /**
+   * Removes the specified Person.
+   * @param userName the identifier of the Person to be removed.
+   * @return The removed Person. Null if the Person didn't exist.
+   */
+  public final Person removePerson(final String userName) {
+    Person result = null;
+    if (personHash.containsKey(userName)) {
+      result = personHash.remove(userName);
+    }
+    return result;
+  }
+
+  /** @return the name of the Organization. */
+  public final String getName() {
+    return name;
+  }
+
+  /** @return A detailed listing of the Organization structure */
+  public final String toString() {
+    String result = "";
+    result = name + "\n\nPeople:\n";
+    for (Person p : personHash.values()) {
+      result += p + "\n";
+    }
+    result += "\nAreas:\n";
+    for (Area a : areaHash.values()) {
+      result += a + "\n";
+    }
+    return result;
+  }
 }

@@ -1,16 +1,30 @@
 package base;
 
+/**
+ * A Structure is an object that exists in a 2D space with an angle.
+ * Classes that implement this interface need to have accessors and
+ * modifiers to the position and angle of these objects.
+ * @author Oren
+ *
+ */
 public interface Structure {
-	void setX(int x);
-	void setY(int y);
-	/**
-  *setAngle(int angle). 
-	*The angle parameter represents whole degrees. 180 represents a halfway turn.
-  *360 is effectively the same as 0.
-	*
-	*/
-	void setAngle(int angle);
-	int getX();
-	int getY();
-	int getAngle();
+  /**
+   * Sets the position of the Structure.
+   * @param x the new x location of the Structure
+   * @param y the new y location of the Structure
+   */
+  void setPosition(int x, int y);
+  /**
+   *setAngle(int angle).
+   *The angle parameter represents whole degrees. 180 represents a halfway turn.
+   *360 is effectively the same as 0.
+   *@param angle new angle of the Structure.
+   */
+  void setAngle(int angle);
+  /** @return the x coordinate of the Structure's location. */
+  int getX();
+  /** @return the y coordinate of the Structure's location. */
+  int getY();
+  /** @return the angle of the Structure. */
+  int getAngle();
 }

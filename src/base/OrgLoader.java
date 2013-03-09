@@ -1,28 +1,36 @@
 package base;
 
-
 /**
  * This interface is implemented by classes that read data from some source
  * and generate Area and Person instances and make them available through
- * getNextPerson and getNextArea method calls.  These methods are reminscent
+ * getNextPerson and getNextArea method calls.  These methods are reminiscent
  * of a set of stacks, with pops and checks.
- * 
  * @author Oren Ely
- *
  */
 public interface OrgLoader {
-
-	public Person popPerson();
-	public Area popArea();
-	public boolean personStackEmpty();
-	public boolean areaStackEmpty();
-	public String getName();
-	
-	 
-	public void pushPerson(Person person);
-	public void pushArea(Area area);
-	public void pushName(String name);
-	
-	 
-	
+  /** @return the next Person in the input stream. */
+  Person popPerson();
+  /** @return the next Area in the input stream. */
+  Area popArea();
+  /** @return true if there are no more Persons to load. */
+  boolean personStackEmpty();
+  /** @return true if there are no more Areas to load. */
+  boolean areaStackEmpty();
+  /** @return the name to apply to the Organization. */
+  String getName();
+  /**
+   *  TODO.
+   *  @param person TODO
+   */
+  void pushPerson(Person person);
+  /**
+   *  TODO.
+   *  @param area TODO
+   */
+  void pushArea(Area area);
+  /**
+   *  TODO.
+   *  @param name TODO
+   */
+  void pushName(String name);
 }

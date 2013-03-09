@@ -2,8 +2,9 @@ package base;
 
 import java.util.HashMap;
 import java.util.Collection;
-import javax.xml.bind.annotation.*;
 
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
 
 /**
 * The Area class represents the floor plan of a single location, such as a
@@ -13,22 +14,15 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Area {
-  /**
-   * The default size of an area.
-   */
+  /** The default size of an area. */
   private static final int DEFAULT_DIMENSION = 300;
-  /**
-   * The name of this Area.
-   */
+  /** The name of this Area. */
   private String name;
-  /**
-   * The dimensions of this area.
-   */
+  /** The dimensions of this area. */
   private int width, height;
-  /**
-   * This hashMap contains all the seats within this Area.
-   */
+  /** This hashMap contains all the seats within this Area. */
   private HashMap<String, Seat> seatMap;
+
   /**
   *  Initializes an Area with the specified key and name.
   *  @param aName The name for the created Area
@@ -36,11 +30,13 @@ public class Area {
   public Area(final String aName) {
     this(aName, DEFAULT_DIMENSION, DEFAULT_DIMENSION);
   }
+
   /**
-  *	 Initializes an Area with a blank slate.
+  *  Initializes an Area with a blank slate.
   *  This is necessary for JAXB unmarshalling xml files into clean versions.
   */
-  public Area() {}
+  public Area() { }
+
   /**
   *  Initializes an Area with the specified key, name, and dimensions.
   *  @param aName The name for the created Area
@@ -58,39 +54,43 @@ public class Area {
   * Searches the set of seats and returns an empty seat.  Use this method if
   * need an empty seat and don't care where it is.  Returns null if all
   * seats are occupied.
-  * 
   * @return An empty seat if one exists.  Otherwise null.
   */
   public final Seat findEmptySeat() {
     Seat result = null;
     Collection<Seat> smValues = seatMap.values();
     for (Seat s : smValues) {
-      if(!s.isOccupied()) {
+      if (!s.isOccupied()) {
         result = s;
         break;
-	  }
-	}
-	return result;
+      }
+    }
+    return result;
   }
 
   /**
-  *  Adds a seat to the area at the specified coordinates. Returns the key of 
+  *  Adds a seat to the area at the specified coordinates. Returns the key of
   *  the added seat.
+  *  @param sName The unique String id of the seat.
+  *  @param x The x coordinate of the seat's location.
+  *  @param y The y coordinate of the seat's location.
   */
-  public final void addSeat(final String name, final int x, final int y) {
-    seatMap.put(name, new Seat(x,y));
+  public final void addSeat(final String sName, final int x, final int y) {
+    seatMap.put(sName, new Seat(x, y));
   }
 
   /**
   *  Removes the seat that matches the associated key.  Does nothing if no
   *  seat matches the key.
+  *  @param key The unique identifier for the seat to be removed.
   */
-  public final void removeSeat(final int key) {
+  public final void removeSeat(final String key) {
     seatMap.remove(key);
   }
 
   /**
   *  Returns the width of the area.
+  *  @return the width of the Area.
   */
   public final Integer getWidth() {
     return width;
@@ -98,24 +98,26 @@ public class Area {
 
   /**
   *  Returns the height of the area.
+  *  @return the height of the Area.
   */
   public final Integer getHeight() {
     return height;
   }
 
+  /**
+   * Returns the name of the Area.
+   * @return name;
+   */
   public final String getName() {
     return name;
   }
+
   /**
   *  Returns the string representation of this object.  Meaning the key and
   *  name.
+  *  @return the name of the Area.
   */
   public final String toString() {
     return name;
-//		String result = name + "["+width+"x"+height+"]";
-//		for(Seat s : seatMap.values()) {
-//			result +="\n"+ s;
-//		}
-//		return result;
   }
 }

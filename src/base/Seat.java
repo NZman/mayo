@@ -1,63 +1,97 @@
 package base;
 
+/**A Seat is an object in 2d space that is pointed in a specific direction
+ * and can be occupied by a Person.
+ */
 public class Seat implements Structure {
-	Person occupant;
-	int x,y;
-	int angle;
-	
-	public Seat(int x, int y, Person person) {
-		this.x = x;
-		this.y = y;
-		occupant = person;
-	}
-	public Seat(int x, int y) {
-		this(x,y,null);
-	}
-	
-	public Seat(){}
+  /**The Person occupying the seat.  Null if empty. */
+  private Person occupant;
+  /**The position of the seat. */
+  private int x, y;
+  /**The direction in which the seat is pointing in degrees. */
+  private int angle;
 
-	public void setX(int x) {
-		this.x = x;
-	}
+  /** Creates a seat in the specified position, and makes
+   * person the occupant.
+   * @param sX the x position of the seat.
+   * @param sY the y position of the seat.
+   * @param person the occupant.  Null if empty.
+   * */
+  public Seat(final int sX, final int sY, final Person person) {
+    x = sX;
+    y = sY;
+    this.angle = 0;
+    occupant = person;
+  }
 
-	public void setY(int y) {
-		this.y = y;
-	}
+  /**
+   * Creates an empty seat in the specified location.
+   * @param sX the x position of the seat.
+   * @param sY the y position of the seat.
+   */
+  public Seat(final int sX, final int sY) {
+    this(sX, sY, null);
+  }
+  /**
+   * Creates an empty seat located at 0,0.
+   */
+  public Seat() {
+    x = 0;
+    y = 0;
+  }
 
-	public void setAngle(int angle) {
-		this.angle = angle;
-	}
-	
-	public void setOccupant(Person occupant) {
-		this.occupant = occupant;
-	}
-	public void removeOccupant() {
-		occupant = null;
-	}
+  /**
+   * Sets the chair to it's new position.
+   * @param sX the x position of the seat.
+   * @param sY the y position of the seat.
+   */
+  public final void setPosition(final int sX, final int sY) {
+    x = sX;
+    y = sY;
+  }
 
-	public int getX() {
-		return x;
-	}
-	public int getY() {
-		return y;
-	}
-	public int getAngle() {
-		return angle;
-	}
+  /**@param sAngle sets the angle of the chair */
+  public final void setAngle(final int sAngle) {
+    angle = sAngle;
+  }
+  /**@param sOccupant the person who will occupy the seat. */
+  public final void setOccupant(final Person sOccupant) {
+    occupant = sOccupant;
+  }
+  /** Frees a seat of it's occupant. */
+  public final void removeOccupant() {
+    occupant = null;
+  }
 
-	public Person getOccupant() {
-		Person result = null;
-		if(occupant != null) {
-			result = occupant;
-		}
-		return result;
-	}
-	public boolean isOccupied() {
-		return occupant != null;
-	}
-	public String toString() {
-		String occString = "";
-		if(isOccupied()) {occString = "{"+occupant+"}";}
-		return "("+x+","+y+")["+angle+"o]" + occString;
-	}
+  /** @return the x position of the seat */
+  public final int getX() {
+    return x;
+  }
+
+  /** @return the y position of the seat. */
+  public final int getY() {
+    return y;
+  }
+  /** @return the angle of the seat. */
+  public final int getAngle() {
+    return angle;
+  }
+  /** @return the person occupying the chair */
+  public final Person getOccupant() {
+    Person result = null;
+    if (occupant != null) {
+      result = occupant;
+    }
+    return result;
+  }
+  /**@return true if the seat is occupied.*/
+  public final boolean isOccupied() {
+    return occupant != null;
+  }
+  /**@return a string giving a detailed rundown of the Seat. */
+  public final String toString() {
+    String occString = "";
+    if (isOccupied()) { occString = "{" + occupant + "}"; }
+    return "(" + x + "," + y + ")[" + angle + "o]" + occString;
+  }
 }
