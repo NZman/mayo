@@ -13,11 +13,15 @@
         <seatMap/>
     </area>
     <person>
-        <username>1</username>
-        <name>Bob</name>
+        <username>Bob</username>
+        <firstName>1</firstName>
+        <middleName></middleName>
+        <lastName>1</lastName>
     </person>
     <person>
-        <username>2</username>
-        <name>Jane</name>
+        <username>Jane</username>
+        <firstName>2</firstName>
+        <middleName></middleName>
+        <lastName>2</lastName>
     </person>
 </Organization>

@@ -16,9 +16,10 @@
             <seatMap/>
         </area>
         <person>
-            <name>Person's Name</name>
+            <first>Person</first>
+            <last>One</last>
         </person>
-        <name>try</name>
+		<name>try</name>
         <person>
             <name>Person 2</name>
         </person>

@@ -3,7 +3,7 @@ package base;
 import javax.xml.bind.annotation.XmlElement;
 
 /**
- * A Person has an actual name and an id name.
+ * A Person has an actual name and a user name.
  * @author Oren Ely
  */
 public class Person {
@@ -46,12 +46,16 @@ public class Person {
   private static Name makeName(final String name) {
     String[] nameSet = name.split(" ");
     String first = nameSet[0];
-    String last = nameSet[nameSet.length - 1];
-    String middle;
-    if (nameSet.length > 2) {
+    String middle, last;
+    
+    if(nameSet.length > 1) {
+      last = nameSet[nameSet.length - 1];
+    } else last = "";
+    if(nameSet.length > 2) {
       middle = name.substring(
-          first.length(), name.length() - (last.length() + 2));
-    } else { middle = ""; }
+          first.length()+1, name.length() - (last.length() + 1));
+    } else middle = "";
+    
     return new Name(first, middle, last);
   }
 
@@ -72,7 +76,7 @@ public class Person {
    * @param pName the Person's name
    * */
   public Person(final String pName) {
-    Name name = makeName(pName);
+    Name name = makeName(pName);    
     username = makeUserName(name,
         UN_FIRST_CHARS, UN_MIDDLE_CHARS, UN_LAST_CHARS);
     firstName = name.first;
@@ -111,14 +115,14 @@ public class Person {
     int[] charLim = {firstChars, midChars, lastChars};
 
     for (int i = 0; i < NAME_PARTS; i++) {
-      while (names[i].length() < charLim[i]) {
+      while (names[i].length() <= charLim[i]) {
         names[i] += "x";
       }
     }
 
-    return names[0].substring(0, charLim[0] - 1)
-        + names[1].substring(0, charLim[1] - 1)
-        + names[2].substring(0, charLim[2] - 1);
+    return (names[0].substring(0, charLim[0])
+        + names[1].substring(0, charLim[1])
+        + names[2].substring(0, charLim[2])).toLowerCase();
   }
 
   /**@return A single string containing the Person's name */
@@ -137,6 +141,6 @@ public class Person {
 
   /**@return the Person's user name */
   public final String toString() {
-    return username;
+    return getName();
   }
 }

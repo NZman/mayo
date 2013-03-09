@@ -14,6 +14,7 @@ import javax.swing.JMenuItem;
 import javax.swing.BoxLayout;
 import javax.swing.Action;
 import javax.swing.AbstractAction;
+import javax.swing.JFileChooser;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -79,7 +80,8 @@ public class MayoSeater extends JPanel {
   private final Action openAction = new AbstractAction("Open") {
     private static final long serialVersionUID = 8673814562827992271L;
     public void actionPerformed(final ActionEvent e) {
-      //TODO
+      JFileChooser jfc = new JFileChooser();
+      int returnval = jfc.showOpenDialog(MayoSeater.this);
     }
   };
 
@@ -114,7 +116,6 @@ public class MayoSeater extends JPanel {
     setPreferredSize(
         new Dimension(PREFERRED_APP_WIDTH, PREFERRED_APP_HEIGHT));
 
-  //Create and add the tool bar
     JToolBar toolBar = new JToolBar();
     toolBar.setPreferredSize(
         new Dimension(PREFERRED_APP_WIDTH, TOOLBAR_HEIGHT));
@@ -122,24 +123,13 @@ public class MayoSeater extends JPanel {
     toolBar.add(new JButton("Delete Area"));
     toolBar.add(new JButton("Delete Person"));
 
-    //Create and add the Person Panel
     personModel = new DefaultListModel<Person>();
-    JPanel personPanel = buildPanel("Add Person");
+    add(buildPanel("Add Person", new JList<Person>(personModel)), 
+        BorderLayout.EAST);
 
-    JList<Person> list = new JList<Person>(personModel);
-    list.setAlignmentX(JList.CENTER_ALIGNMENT);
-    list.setMaximumSize(new Dimension(STARTING_PANEL_WIDTH,
-        PREFERRED_APP_HEIGHT - BUTTON_HEIGHT));
-    personPanel.add(list);
-
-    add(personPanel, BorderLayout.EAST);
-
-    //Create and add the Area Panel
     areaModel = new DefaultListModel<Area>();
-    JPanel areaPanel = buildPanel("Add Area");
-    areaPanel.add(new JList<Area>(areaModel));
-    add(areaPanel, BorderLayout.WEST);
-    areaPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    add(buildPanel("Add Area", new JList<Area>(areaModel)),
+        BorderLayout.WEST);
 
     setOrganization(new Organization("New Organization"));
   }
@@ -149,7 +139,7 @@ public class MayoSeater extends JPanel {
    * @param buttonName The name of the button being placed in the panel.
    * @return the JPanel.
    */
-  private JPanel buildPanel(final String buttonName) {
+  private JPanel buildPanel(final String buttonName, JList list) {
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     panel.setBorder(BorderFactory.createEtchedBorder());
@@ -162,6 +152,9 @@ public class MayoSeater extends JPanel {
     button.setMaximumSize(new Dimension(STARTING_PANEL_WIDTH, BUTTON_HEIGHT));
 
     panel.add(button);
+    list.setMaximumSize(new Dimension(STARTING_PANEL_WIDTH,
+        PREFERRED_APP_HEIGHT - BUTTON_HEIGHT));
+    panel.add(list);
 
     return panel;
   }
@@ -240,14 +233,14 @@ public class MayoSeater extends JPanel {
     SwingUtilities.invokeLater(new Runnable() {
       public void run() {
         createAndShowGUI();
-        XMLOrgLoader xload = new XMLOrgLoader();
-        xload.clear();  // this clears out binding
-        xload.test(); // this creates a test sample "test2.xml"
-        xload.read("test2.xml");
-        if (!xload.personStackEmpty()) {
-          System.out.println("Popping a person");
-          System.out.println(xload.popPerson().getName());
-        }
+        //new TestLoader();
+//        xload.clear();  // this clears out binding
+//        xload.test(); // this creates a test sample "test2.xml"
+//        xload.read("test2.xml");
+        //if (!tload.personStackEmpty()) {
+        //  System.out.println("Popping a person");
+        //  System.out.println(tload.popPerson().getName());
+        //}
       }
     });
   }

@@ -61,8 +61,8 @@ public class XMLOrgLoader implements OrgLoader {
 	
 	pushArea(new Area("Test",100,300));
 	pushArea(new Area("Test2", 300, 400));
-	pushPerson(new Person("1","Bob"));
-	pushPerson(new Person("2","Jane"));
+	pushPerson(new Person("Bob","1"));
+	pushPerson(new Person("Jane","2"));
 	write("test2.xml");
 	
 	}
