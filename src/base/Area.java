@@ -24,6 +24,13 @@ public class Area {
   private HashMap<String, Seat> seatMap;
 
   /**
+  *  Initializes an Area with a blank slate.
+  */
+  public Area() {
+    this("New Area", DEFAULT_DIMENSION, DEFAULT_DIMENSION);
+  }
+
+  /**
   *  Initializes an Area with the specified key and name.
   *  @param aName The name for the created Area
   */
@@ -32,19 +39,13 @@ public class Area {
   }
 
   /**
-  *  Initializes an Area with a blank slate.
-  *  This is necessary for JAXB unmarshalling xml files into clean versions.
-  */
-  public Area() { }
-
-  /**
   *  Initializes an Area with the specified key, name, and dimensions.
   *  @param aName The name for the created Area
   *  @param aWidth The horizontal size of the created Area
   *  @param aHeight The vertical size of the created Area
   */
   public Area(final String aName, final Integer aWidth, final Integer aHeight) {
-    seatMap = new HashMap<String, Seat>();
+    seatMap = new HashMap<>();
     name = aName;
     width = aWidth;
     height = aHeight;
@@ -72,8 +73,8 @@ public class Area {
   *  Adds a seat to the area at the specified coordinates. Returns the key of
   *  the added seat.
   *  @param sName The unique String id of the seat.
-  *  @param x The x coordinate of the seat's location.
-  *  @param y The y coordinate of the seat's location.
+  *  @param x The x coordinate of the seats location.
+  *  @param y The y coordinate of the seats location.
   */
   public final void addSeat(final String sName, final int x, final int y) {
     seatMap.put(sName, new Seat(x, y));
@@ -86,6 +87,15 @@ public class Area {
   */
   public final void removeSeat(final String key) {
     seatMap.remove(key);
+  }
+  
+  /**
+   * Returns a seat that matches the specified key.
+   * @param key the identifier of the seat.
+   * @return 
+   */
+  public final Seat getSeat(final String key) {
+    return seatMap.get(key);
   }
 
   /**
@@ -117,6 +127,7 @@ public class Area {
   *  name.
   *  @return the name of the Area.
   */
+  @Override
   public final String toString() {
     return name;
   }
