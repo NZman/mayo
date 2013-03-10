@@ -20,8 +20,8 @@ public class Organization {
    * @param oName The name of the Organization.
    */
   public Organization(final String oName) {
-    areaHash = new HashMap<String, Area>();
-    personHash = new HashMap<String, Person>();
+    areaHash = new HashMap<>();
+    personHash = new HashMap<>();
     this.name = oName;
   }
 
@@ -37,22 +37,6 @@ public class Organization {
     }
     while (!ol.personStackEmpty()) {
       addPerson(ol.popPerson());
-    }
-  }
-
-  /**
-   * Places a person into an area based on a person key and an area key.
-   * This method can't be used to specify a specific chair in the
-   * selected Area.
-   * @param userName The identifier of the person
-   * @param areaName The identifier of the seat
-   */
-  public final void seatPerson(final String userName, final String areaName) {
-    if (areaExists(areaName)) {
-      Area area = areaHash.get(areaName);
-      Person person = personHash.get(userName);
-      Seat s = area.findEmptySeat();
-      s.setOccupant(person);
     }
   }
 
@@ -160,9 +144,9 @@ public class Organization {
   }
 
   /** @return A detailed listing of the Organization structure */
+  @Override
   public final String toString() {
-    String result = "";
-    result = name + "\n\nPeople:\n";
+    String result = name + "\n\nPeople:\n";
     for (Person p : personHash.values()) {
       result += p + "\n";
     }

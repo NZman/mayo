@@ -161,7 +161,8 @@ public class MayoSeater extends JPanel {
    * @param buttonName The name of the button being placed in the panel.
    * @return the JPanel.
    */
-  private JPanel buildPanel(final String buttonName, JList list, Action action) {
+  private JPanel buildPanel(final String buttonName, 
+          JList list, Action action) {
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     panel.setBorder(BorderFactory.createEtchedBorder());

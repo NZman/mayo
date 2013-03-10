@@ -1,8 +1,10 @@
 package test;
 
+import base.DefaultArea;
 import base.Area;
 import base.OrgLoader;
 import base.Person;
+import base.DefaultSeat;
 import java.util.Stack;
 
 public class TestLoader implements OrgLoader {
@@ -15,12 +17,12 @@ public class TestLoader implements OrgLoader {
 		personStack.push(new Person("Samantha Green"));
 		personStack.push(new Person("Arnold Carlos Palmer"));
 		personStack.push(new Person("Bob R. Handly"));
-		Area area = new Area("Floor One", 100, 300);
-		area.addSeat("101",12, 31);
-		area.addSeat("102",33, 25);
+		DefaultArea area = new DefaultArea("Floor One", 100, 300);
+		area.addSeat(new DefaultSeat("101", 12, 31));
+    area.addSeat(new DefaultSeat("102", 33, 25));
 		areaStack.push(area);
-		area = new Area("Floor Two",200,700);
-		area.addSeat("201",50,75);
+		area = new DefaultArea("Floor Two",200,700);
+		area.addSeat(new DefaultSeat("201", 50, 75));
 		areaStack.push(area);
 	}
 	
@@ -43,12 +45,16 @@ public class TestLoader implements OrgLoader {
 	public boolean areaStackEmpty() {
 		return areaStack.empty();
 	}
+  @Override
 	public String getName() {
 		return "Test Inc.";
 	}
 	
 	// For backwards compatibility
+  @Override
 	public void pushPerson(Person person){};
+  @Override
 	public void pushArea(Area area){};
+  @Override
 	public void pushName(String name){};
 }

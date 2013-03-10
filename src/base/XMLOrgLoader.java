@@ -59,8 +59,8 @@ public class XMLOrgLoader implements OrgLoader {
 	
 	public void test(){
 	
-	pushArea(new Area("Test",100,300));
-	pushArea(new Area("Test2", 300, 400));
+	pushArea(new DefaultArea("Test",100,300));
+	pushArea(new DefaultArea("Test2", 300, 400));
 	pushPerson(new Person("Bob","1"));
 	pushPerson(new Person("Jane","2"));
 	write("test2.xml");
@@ -153,26 +153,24 @@ public class XMLOrgLoader implements OrgLoader {
 		else
 		{	
 			return false;
-		}
+    }
 	}
 
-
-	public String getName(){
-
-	return binding.getName();
-	
-	}	
-	public void pushPerson(Person person){
-	binding.addPerson(person);
-	}
-	
-	public void pushArea(Area area){
-	binding.addArea(area);
-	}
-	public void pushName(String name){
-	binding.setName(name);
-	}
-
+  @Override
+  public String getName(){
+    return binding.getName();
+  }	
+  @Override
+  public void pushPerson(Person person){
+    binding.addPerson(person);
+  }
+  @Override
+  public void pushArea(Area area){
+    binding.addArea(area);
+  }
+  public void pushName(String name){
+    binding.setName(name);
+  }
 }
  
  

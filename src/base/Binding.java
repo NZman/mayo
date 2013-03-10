@@ -16,10 +16,10 @@ public class Binding {
   private String name;
 
   @XmlElement
-  private List<Area> area = new ArrayList<Area>();
+  private List<Area> area = new ArrayList<>();
   
   @XmlElement
-  private List<Person> person = new ArrayList<Person>();
+  private List<Person> person = new ArrayList<>();
 
   public Binding() { }
 
