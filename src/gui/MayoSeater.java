@@ -15,19 +15,16 @@ import javax.swing.BoxLayout;
 import javax.swing.Action;
 import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Component;
 
 import java.awt.event.ActionEvent;
 
 import base.Organization;
 import base.Person;
 import base.Area;
-import base.XMLOrgLoader;
-
-import test.TestLoader;
 
 /**
  * The MayoSeater is the base structure of the seating application.
@@ -63,6 +60,7 @@ public class MayoSeater extends JPanel {
   /** This Action creates a new blank Organization. */
   private final Action newAction = new AbstractAction("New") {
     private static final long serialVersionUID = 3003587364492370843L;
+    @Override
     public void actionPerformed(final ActionEvent e) {
       setOrganization(new Organization("New Organization"));
     }
@@ -71,6 +69,7 @@ public class MayoSeater extends JPanel {
   /** This Action quits the Application. */
   private final Action quitAction = new AbstractAction("Quit") {
     private static final long serialVersionUID = -4841054297554920462L;
+    @Override
     public void actionPerformed(final ActionEvent e) {
       System.exit(0);
     }
@@ -79,6 +78,7 @@ public class MayoSeater extends JPanel {
   /** This Action opens an Organization. */
   private final Action openAction = new AbstractAction("Open") {
     private static final long serialVersionUID = 8673814562827992271L;
+    @Override
     public void actionPerformed(final ActionEvent e) {
       JFileChooser jfc = new JFileChooser();
       int returnval = jfc.showOpenDialog(MayoSeater.this);
@@ -88,16 +88,38 @@ public class MayoSeater extends JPanel {
   /** This Action writes the Organization to a file. */
   private final Action saveAction = new AbstractAction("Save") {
     private static final long serialVersionUID = 733808816987333191L;
+    @Override
     public void actionPerformed(final ActionEvent e) {
-      //TODO
+      JFileChooser jfc = new JFileChooser();
+      int returnval = jfc.showSaveDialog(MayoSeater.this);
     }
   };
 
   /** This Action sets the Area to be viewed in the AreaCanvas. */
   private final Action viewAreaAction = new AbstractAction() {
     private static final long serialVersionUID = 6565006504766219153L;
+    @Override
     public void actionPerformed(final ActionEvent e) {
       viewArea(e.getActionCommand());
+    }
+  };
+  
+  /** This Action adds a new Person to the Organization. */
+  private final Action addPersonAction = new AbstractAction("Add Person") {
+    @Override
+    public void actionPerformed(final ActionEvent e) {
+      String result = JOptionPane.showInputDialog("Person's name?");
+      final Person person = new Person(result);
+      organization.addPerson(person);
+      personModel.addElement(person);
+    }
+  };
+  
+  /** This Action adds a new Area to the Organization */
+  private final Action addAreaAction = new AbstractAction("Add Area") {
+    @Override
+    public void actionPerformed(final ActionEvent e) {
+      JOptionPane.showInputDialog("Area name?");
     }
   };
 
@@ -123,12 +145,12 @@ public class MayoSeater extends JPanel {
     toolBar.add(new JButton("Delete Area"));
     toolBar.add(new JButton("Delete Person"));
 
-    personModel = new DefaultListModel<Person>();
-    add(buildPanel("Add Person", new JList<Person>(personModel)), 
+    personModel = new DefaultListModel<>();
+    add(buildPanel("Add Person", new JList<>(personModel), addPersonAction), 
         BorderLayout.EAST);
 
-    areaModel = new DefaultListModel<Area>();
-    add(buildPanel("Add Area", new JList<Area>(areaModel)),
+    areaModel = new DefaultListModel<>();
+    add(buildPanel("Add Area", new JList<>(areaModel), addAreaAction),
         BorderLayout.WEST);
 
     setOrganization(new Organization("New Organization"));
@@ -139,7 +161,7 @@ public class MayoSeater extends JPanel {
    * @param buttonName The name of the button being placed in the panel.
    * @return the JPanel.
    */
-  private JPanel buildPanel(final String buttonName, JList list) {
+  private JPanel buildPanel(final String buttonName, JList list, Action action) {
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     panel.setBorder(BorderFactory.createEtchedBorder());
@@ -147,7 +169,9 @@ public class MayoSeater extends JPanel {
         new Dimension(STARTING_PANEL_WIDTH, PREFERRED_APP_HEIGHT));
     panel.setVisible(true);
 
-    JButton button = new JButton(buttonName);
+    //JButton button = new JButton(buttonName);
+    JButton button = new JButton(action);
+    //button.setAction(action);
     button.setAlignmentX(JButton.CENTER_ALIGNMENT);
     button.setMaximumSize(new Dimension(STARTING_PANEL_WIDTH, BUTTON_HEIGHT));
 
@@ -217,7 +241,7 @@ public class MayoSeater extends JPanel {
     frame.setJMenuBar(ms.makeMenuBar());
 
     //Create an organization using the test loader
-    Organization org = new Organization(new TestLoader());
+    Organization org = new Organization("New Organization");
     ms.setOrganization(org);
     frame.setTitle(APPLICATION_NAME + ": " + org.getName());
     frame.pack();
@@ -231,6 +255,7 @@ public class MayoSeater extends JPanel {
   public static void main(final String[] args) {
     //No idea what this does
     SwingUtilities.invokeLater(new Runnable() {
+      @Override
       public void run() {
         createAndShowGUI();
         //new TestLoader();
