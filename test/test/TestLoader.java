@@ -3,6 +3,7 @@ package test;
 import base.DefaultArea;
 import base.Area;
 import base.OrgLoader;
+import base.DefaultPerson;
 import base.Person;
 import base.DefaultSeat;
 import java.util.Stack;
@@ -12,11 +13,11 @@ public class TestLoader implements OrgLoader {
 	Stack<Area> areaStack;
 	
 	public TestLoader() {
-		personStack = new Stack<Person>();
-		areaStack = new Stack<Area>();
-		personStack.push(new Person("Samantha Green"));
-		personStack.push(new Person("Arnold Carlos Palmer"));
-		personStack.push(new Person("Bob R. Handly"));
+		personStack = new Stack<>();
+		areaStack = new Stack<>();
+		personStack.push(new DefaultPerson("Samantha Green"));
+		personStack.push(new DefaultPerson("Arnold Carlos Palmer"));
+		personStack.push(new DefaultPerson("Bob R. Handly"));
 		DefaultArea area = new DefaultArea("Floor One", 100, 300);
 		area.addSeat(new DefaultSeat("101", 12, 31));
     area.addSeat(new DefaultSeat("102", 33, 25));

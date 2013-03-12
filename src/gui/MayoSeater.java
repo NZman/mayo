@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.ListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.SwingUtilities;
 import javax.swing.JMenuBar;
@@ -23,7 +24,9 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 import base.Organization;
+import base.DefaultOrganization;
 import base.Person;
+import base.DefaultPerson;
 import base.Area;
 
 /**
@@ -62,7 +65,7 @@ public class MayoSeater extends JPanel {
     private static final long serialVersionUID = 3003587364492370843L;
     @Override
     public void actionPerformed(final ActionEvent e) {
-      setOrganization(new Organization("New Organization"));
+      setOrganization(new DefaultOrganization("New Organization"));
     }
   };
 
@@ -81,7 +84,7 @@ public class MayoSeater extends JPanel {
     @Override
     public void actionPerformed(final ActionEvent e) {
       JFileChooser jfc = new JFileChooser();
-      int returnval = jfc.showOpenDialog(MayoSeater.this);
+      jfc.showOpenDialog(MayoSeater.this);
     }
   };
 
@@ -91,7 +94,7 @@ public class MayoSeater extends JPanel {
     @Override
     public void actionPerformed(final ActionEvent e) {
       JFileChooser jfc = new JFileChooser();
-      int returnval = jfc.showSaveDialog(MayoSeater.this);
+      jfc.showSaveDialog(MayoSeater.this);
     }
   };
 
@@ -109,7 +112,7 @@ public class MayoSeater extends JPanel {
     @Override
     public void actionPerformed(final ActionEvent e) {
       String result = JOptionPane.showInputDialog("Person's name?");
-      final Person person = new Person(result);
+      final Person person = new DefaultPerson(result);
       organization.addPerson(person);
       personModel.addElement(person);
     }
@@ -153,7 +156,7 @@ public class MayoSeater extends JPanel {
     add(buildPanel("Add Area", new JList<>(areaModel), addAreaAction),
         BorderLayout.WEST);
 
-    setOrganization(new Organization("New Organization"));
+    setOrganization(new DefaultOrganization("New Organization"));
   }
 
   /**
@@ -242,7 +245,7 @@ public class MayoSeater extends JPanel {
     frame.setJMenuBar(ms.makeMenuBar());
 
     //Create an organization using the test loader
-    Organization org = new Organization("New Organization");
+    Organization org = new DefaultOrganization("New Organization");
     ms.setOrganization(org);
     frame.setTitle(APPLICATION_NAME + ": " + org.getName());
     frame.pack();
