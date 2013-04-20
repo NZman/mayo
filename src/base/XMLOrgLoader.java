@@ -31,8 +31,10 @@ import java.io.File;
 import java.io.IOException;
 
 
-import javax.xml.bind.*;
-
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 
 public class XMLOrgLoader implements OrgLoader { 
 
@@ -59,11 +61,16 @@ public class XMLOrgLoader implements OrgLoader {
 	
 	public void test(){
 	
+
 	pushArea(new DefaultArea("Test",100,300));
 	pushArea(new DefaultArea("Test2", 300, 400));
 	pushPerson(new DefaultPerson("Bob","1"));
 	pushPerson(new DefaultPerson("Jane","2"));
 	write("test2.xml");
+
+
+
+	
 	
 	}
 	
@@ -106,8 +113,9 @@ public class XMLOrgLoader implements OrgLoader {
 			status = NO_FILE;
 			System.exit(0);
 			}
-
-			binding = (Binding) unmarshaller.unmarshal (file);
+			else {
+				binding = (Binding) unmarshaller.unmarshal (file);
+				}
 			}
 		
 		catch (JAXBException e) {
@@ -121,7 +129,6 @@ public class XMLOrgLoader implements OrgLoader {
 
 	public Person popPerson(){
 		nPerson++;	
-		System.out.println("Person: " + nPerson);
 		return binding.getPersonByIndex(nPerson-1);
 	}
 

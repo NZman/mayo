@@ -12,7 +12,31 @@
         <height>400</height>
         <seatMap/>
     </area>
+    <area>
+        <name>Fixed</name>
+        <width>200</width>
+        <height>100</height>
+        <seatMap>
+            <entry>
+                <key>Seat 2</key>
+                <value>
+                    <x>2</x>
+                    <y>3</y>
+                    <angle>0</angle>
+                </value>
+            </entry>
+            <entry>
+                <key>Seat Name 1</key>
+                <value>
+                    <x>1</x>
+                    <y>2</y>
+                    <angle>0</angle>
+                </value>
+            </entry>
+        </seatMap>
+    </area>
     <person>
+
         <username>Bob</username>
         <firstName>1</firstName>
         <middleName></middleName>

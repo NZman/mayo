@@ -1,1 +1,1 @@
-java -cp bin gui/MayoSeater
+java -cp bin:bin/* gui/MayoSeater

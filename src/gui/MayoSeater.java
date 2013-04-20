@@ -28,6 +28,10 @@ import base.DefaultOrganization;
 import base.Person;
 import base.DefaultPerson;
 import base.Area;
+import base.XMLOrgLoader;
+import base.SQLOrgLoader;
+
+import test.TestLoader;
 
 /**
  * The MayoSeater is the base structure of the seating application.
@@ -262,6 +266,7 @@ public class MayoSeater extends JPanel {
       @Override
       public void run() {
         createAndShowGUI();
+<<<<<<< HEAD
         //new TestLoader();
 //        xload.clear();  // this clears out binding
 //        xload.test(); // this creates a test sample "test2.xml"
@@ -270,6 +275,25 @@ public class MayoSeater extends JPanel {
         //  System.out.println("Popping a person");
         //  System.out.println(tload.popPerson().getName());
         //}
+=======
+        XMLOrgLoader xload = new XMLOrgLoader();
+        xload.clear();  // this clears out binding
+        xload.test(); // this creates a test sample "test2.xml"
+        xload.read("test2.xml");
+        if (!xload.personStackEmpty()) {
+          System.out.println("Popping a person");
+          System.out.println(xload.popPerson().getName());
+   
+   SQLOrgLoader sqload = new SQLOrgLoader("jdbc:mysql://localhost:3306/test", "test623", "test");
+
+	sqload.addPerson(new Person("Carl Marks"));
+	sqload.addPerson(new Person("Dayzed Fume"));
+	sqload.readByType("person", "Carl Marks");
+	System.out.println("Reading all by type.");
+	sqload.readAllByType("person");
+   
+        }
+>>>>>>> Taking classes out/adding MySQL Conn/removing DS_Store refs
       }
     });
   }
