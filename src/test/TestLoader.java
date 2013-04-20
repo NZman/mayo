@@ -46,16 +46,16 @@ public class TestLoader implements OrgLoader {
 	public boolean areaStackEmpty() {
 		return areaStack.empty();
 	}
-  @Override
+	@Override
 	public String getName() {
 		return "Test Inc.";
 	}
 	
 	// For backwards compatibility
-  @Override
-	public void pushPerson(Person person){};
-  @Override
-	public void pushArea(Area area){};
-  @Override
+
+	public void pushPerson(DefaultPerson person){};
+
+	public void pushArea(DefaultArea area){};
+
 	public void pushName(String name){};
 }

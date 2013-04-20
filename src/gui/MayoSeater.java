@@ -267,10 +267,11 @@ public class MayoSeater extends JPanel {
       public void run() {
         createAndShowGUI();
 
-        //new TestLoader();
-//        xload.clear();  // this clears out binding
-//        xload.test(); // this creates a test sample "test2.xml"
-//        xload.read("test2.xml");
+        new TestLoader();
+        XMLOrgLoader xload = new XMLOrgLoader();
+        xload.clear();  // this clears out binding
+        xload.test(); // this creates a test sample "test2.xml"
+        xload.read("test2.xml");
         //if (!tload.personStackEmpty()) {
         //  System.out.println("Popping a person");
         //  System.out.println(tload.popPerson().getName());

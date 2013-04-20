@@ -2,6 +2,8 @@ package base;
 
 public interface SQLEditor{
 
+    // not yet implemented
+    
 // reading
 	Binding read(String type, int position) // e.g., ("Person", 1)
 	Binding batchRead(String type, int start, int finish)

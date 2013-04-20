@@ -5,6 +5,8 @@ import java.util.Collection;
 
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
 * The Area class represents the floor plan of a single location, such as a
@@ -21,7 +23,17 @@ public class DefaultArea implements Area{
   /** The dimensions of this area. */
   private int width, height;
   /** This hashMap contains all the seats within this Area. */
+
   private HashMap<String, Seat> seatMap;
+
+  	static class Adapter extends XmlAdapter<DefaultArea, Area> {
+	  public Area unmarshal(DefaultArea v) { return v; }
+	  public DefaultArea marshal(Area v) { return (DefaultArea) v; }
+	}
+	
+
+
+
 
   /**
   *  Initializes an Area with a blank slate.

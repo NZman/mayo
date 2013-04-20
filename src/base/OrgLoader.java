@@ -22,12 +22,12 @@ public interface OrgLoader {
    *  TODO.
    *  @param person TODO
    */
-  void pushPerson(Person person);
+  void pushPerson(DefaultPerson person);
   /**
    *  TODO.
    *  @param area TODO
    */
-  void pushArea(Area area);
+  void pushArea(DefaultArea area);
   /**
    *  TODO.
    *  @param name TODO

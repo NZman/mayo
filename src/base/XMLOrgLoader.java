@@ -163,16 +163,16 @@ public class XMLOrgLoader implements OrgLoader {
     }
 	}
 
-  @Override
+
   public String getName(){
     return binding.getName();
   }	
-  @Override
-  public void pushPerson(Person person){
+
+  public void pushPerson(DefaultPerson person){
     binding.addPerson(person);
   }
-  @Override
-  public void pushArea(Area area){
+
+  public void pushArea(DefaultArea area){
     binding.addArea(area);
   }
   public void pushName(String name){

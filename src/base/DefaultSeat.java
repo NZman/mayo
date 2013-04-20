@@ -1,24 +1,43 @@
 package base;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+import javax.xml.bind.annotation.XmlElement;
 
 /**A Seat is an object in 2d space that is pointed in a specific direction
  * and can be occupied by a Person.
  */
+ 
+
+
 public class DefaultSeat implements Seat {
   /**The Person occupying the seat.  Null if empty. */
+  @XmlElement
   private Person occupant;
   /**The position of the seat. */
+  @XmlElement
   private int x, y;
   /**The direction in which the seat is pointing in degrees. */
+  @XmlElement
   private int angle;
   /**The name of the seat. */
+  @XmlElement
   private String name;
 
+  
+  	static class Adapter extends XmlAdapter<DefaultSeat, Seat> {
+	  public Seat unmarshal(DefaultSeat v) { return v; }
+	  public DefaultSeat marshal(Seat v) { return (DefaultSeat) v; }
+	}
+  
+  
   /** Creates a seat in the specified position, and makes
    * person the occupant.
    * @param sX the x position of the seat.
    * @param sY the y position of the seat.
    * @param person the occupant.  Null if empty.
    * */
+   
+   
   public DefaultSeat(String name, 
           final Integer sX, final Integer sY, final Person person) {
     x = sX;

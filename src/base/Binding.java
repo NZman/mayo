@@ -9,25 +9,25 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement(name = "Organization")
-@XmlSeeAlso({Area.class, Person.class })
+@XmlSeeAlso({DefaultArea.class, DefaultPerson.class })
 public class Binding {
 
   @XmlElement
   private String name;
 
   @XmlElement
-  private List<Area> area = new ArrayList<>();
+  private List<DefaultArea> area = new ArrayList<>();
   
   @XmlElement
-  private List<Person> person = new ArrayList<>();
+  private List<DefaultPerson> person = new ArrayList<>();
 
   public Binding() { }
 
-  public final void addArea(final Area a) {
+  public final void addArea(final DefaultArea a) {
     this.area.add(a);
   }
 
-  public final void addPerson(final Person p) {
+  public final void addPerson(final DefaultPerson p) {
     this.person.add(p);
   }
 
@@ -36,11 +36,11 @@ public class Binding {
     this.name = n;
   }
 
-  public final Area getAreaByIndex(final int index) {
+  public final DefaultArea getAreaByIndex(final int index) {
     return area.get(index);
   }
 
-  public final Person getPersonByIndex(final int index) {
+  public final DefaultPerson getPersonByIndex(final int index) {
     return person.get(index);
   }
 
