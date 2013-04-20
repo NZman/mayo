@@ -7,6 +7,10 @@ src/base/Structure.java
 src/base/Binding.java
 src/base/XMLOrgLoader.java
 src/base/SQLOrgLoader.java
+src/base/DefaultPerson.java
+src/base/DefaultArea.java
+src/base/DefaultOrganization.java
+src/base/DefaultSeat.java
 src/gui/MayoSeater.java
 src/gui/AreaCanvas.java
 src/test/TestLoader.java
