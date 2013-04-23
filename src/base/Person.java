@@ -4,10 +4,14 @@
  */
 package base;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author Oren
  */
+@XmlJavaTypeAdapter(DefaultPerson.Adapter.class) 
 public interface Person {
 
   /**@param name The name of the Person */

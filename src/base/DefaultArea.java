@@ -1,6 +1,7 @@
 package base;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Collection;
 
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -15,6 +16,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 *
 */
 @XmlAccessorType(XmlAccessType.FIELD)
+
 public class DefaultArea implements Area{
   /** The default size of an area. */
   private static final int DEFAULT_DIMENSION = 300;
@@ -24,6 +26,7 @@ public class DefaultArea implements Area{
   private int width, height;
   /** This hashMap contains all the seats within this Area. */
 
+//  @XmlJavaTypeAdapter(DefaultArea.seatMapAdapter.class)
   private HashMap<String, Seat> seatMap;
 
   	static class Adapter extends XmlAdapter<DefaultArea, Area> {
@@ -31,6 +34,24 @@ public class DefaultArea implements Area{
 	  public DefaultArea marshal(Area v) { return (DefaultArea) v; }
 	}
 	
+/* maybe will help?
+	static class seatMapAdapter extends XmlAdapter<HashMap<String, DefaultSeat>,HashMap<String,Seat>> 
+	{
+	
+		public HashMap<String,Seat> unmarshal (HashMap<String, DefaultSeat> v) {
+		
+		// do stuff		
+		// see http://blog.bdoughan.com/2010/07/xmladapter-jaxbs-secret-weapon.html
+		return v; 
+		}
+	
+		public HashMap<String, DefaultSeat> marshal (HashMap<String,Seat> v) {return v;}	
+	
+		}
+	}
+*/	
+	
+
 
 
 

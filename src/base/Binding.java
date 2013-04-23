@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement(name = "Organization")
-@XmlSeeAlso({DefaultArea.class, DefaultPerson.class })
+@XmlSeeAlso({DefaultArea.class, DefaultSeat.class, DefaultPerson.class })
 public class Binding {
 
   @XmlElement

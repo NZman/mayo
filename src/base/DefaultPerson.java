@@ -1,6 +1,9 @@
 package base;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+
 
 /**
  * A Person has an actual name and a user name.
@@ -18,6 +21,13 @@ public class DefaultPerson implements Person {
   /**The number of strings that make up a name.*/
   static final int NAME_PARTS = 3;
   /**A wrapper class containing a first, middle, and last name.*/
+  
+  
+  	static class Adapter extends XmlAdapter<DefaultPerson, Person> {
+	  public Person unmarshal(DefaultPerson v) { return v; }
+	  public DefaultPerson marshal(Person v) { return (DefaultPerson) v; }
+	}
+	
   private static final class Name {
     /** The three components of a name.
      * There can be multiple names in middle.

@@ -265,7 +265,7 @@ public class MayoSeater extends JPanel {
     SwingUtilities.invokeLater(new Runnable() {
       @Override
       public void run() {
-        createAndShowGUI();
+     //   createAndShowGUI();
 
         new TestLoader();
         XMLOrgLoader xload = new XMLOrgLoader();

@@ -1,4 +1,6 @@
 package base;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
 * The Area class represents the floor plan of a single location, such as a
@@ -8,6 +10,8 @@ package base;
 * @author Oren
 */
 
+@XmlJavaTypeAdapter(DefaultArea.Adapter.class) 
+@XmlRootElement
 public interface Area {
   /** @param name the new name of the Area. */
   public void setName(String name);

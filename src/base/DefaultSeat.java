@@ -2,6 +2,7 @@ package base;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**A Seat is an object in 2d space that is pointed in a specific direction
  * and can be occupied by a Person.
@@ -10,6 +11,14 @@ import javax.xml.bind.annotation.XmlElement;
 
 
 public class DefaultSeat implements Seat {
+
+	static class Adapter extends XmlAdapter<Object, Object> {
+	  public Object unmarshal(Object v) { return v; }
+	  public Object marshal(Object v) { return (Object) v; }
+	}  // see AnyTypeAdapter (K. Kawaguchi)
+
+	
+	
   /**The Person occupying the seat.  Null if empty. */
   @XmlElement
   private Person occupant;
@@ -21,14 +30,7 @@ public class DefaultSeat implements Seat {
   private int angle;
   /**The name of the seat. */
   @XmlElement
-  private String name;
-
-  
-  	static class Adapter extends XmlAdapter<DefaultSeat, Seat> {
-	  public Seat unmarshal(DefaultSeat v) { return v; }
-	  public DefaultSeat marshal(Seat v) { return (DefaultSeat) v; }
-	}
-  
+  private String name;  
   
   /** Creates a seat in the specified position, and makes
    * person the occupant.
@@ -116,6 +118,7 @@ public class DefaultSeat implements Seat {
   }
   /** @return the person occupying the chair */
   @Override
+  @XmlTransient
   public final Person getOccupant() {
     Person result = null;
     if (occupant != null) {
@@ -135,4 +138,6 @@ public class DefaultSeat implements Seat {
     if (isOccupied()) { occString = "{" + occupant + "}"; }
     return "(" + x + "," + y + ")[" + angle + "o]" + occString;
   }
+   
+  
 }
